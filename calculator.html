@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>
+		Calculator
+	</title>
+</head>
+<body style = "zoom : 2">
+    <div>	
+        <input type="text" id="display" readonly>
+	</br>
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="toggleSign()">+/-</button>
+        <button onclick="appendCharacter('/')">÷</button>
+	<br>
+        <button onclick="appendCharacter('7')">7</button>
+        <button onclick="appendCharacter('8')">8</button>
+        <button onclick="appendCharacter('9')">9</button>
+        <button onclick="appendCharacter('*')">X</button>
+	</br>
+        <button onclick="appendCharacter('4')">4</button>
+        <button onclick="appendCharacter('5')">5</button>
+        <button onclick="appendCharacter('6')">6</button>
+        <button onclick="appendCharacter('-')">-</button>
+	</br>
+        <button onclick="appendCharacter('1')">1</button>
+        <button onclick="appendCharacter('2')">2</button>
+        <button onclick="appendCharacter('3')">3</button>
+        <button onclick="appendCharacter('+')">+</button>
+	<br>
+	<button onclick="appendCharacter('0')">0</button>
+        <button onclick="appendCharacter('.')">.</button>
+	<button onclick="calculateResult()">=</button>
+    </div>
+
+    <script>
+        function appendCharacter(character) {
+            const display = document.getElementById('display');
+            display.value += character;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculateResult() {
+            const display = document.getElementById('display');
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+	 function toggleSign() {
+            const display = document.getElementById('display');
+            let value = display.value;
+            
+            // Remove leading minus sign if present
+            if (value.startsWith('-')) {
+                display.value = value.substring(1);
+            } else {
+                display.value = '-' + value;
+            }
+        }
+    </script>
+</body>
+</html>
